@@ -1,0 +1,37 @@
+services:
+    api:
+        build:
+            context: .
+            dockerfile: SistemaControleGastosResidenciais/Dockerfile
+        ports:
+            - "7201:8080"
+        environment:
+            ASPNETCORE_ENVIRONMENT: Development
+            ConnectionStrings__MSSQLServerSQLConnectionString: "Server=sqlserver,1433;Database=db_household_expense_tracking_development;User Id=sa;Password=Database123@;TrustServerCertificate=True;"
+            Jwt__SecretKey: "SistemaControleGastosResidenciais-JWT-SecretKey-2026-Segura"
+        depends_on:
+            sqlserver:
+                condition: service_healthy
+
+    sqlserver:
+        image: mcr.microsoft.com/mssql/server:2022-latest
+        environment:
+            ACCEPT_EULA: "Y"
+            MSSQL_SA_PASSWORD: "Database123@"
+        ports:
+            - "1433:1433"
+        volumes:
+            - sqlserver-data:/var/opt/mssql
+        healthcheck:
+            test:
+                [
+                    "CMD-SHELL",
+                    "/opt/mssql-tools18/bin/sqlcmd -S localhost -U sa -P 'Database123@' -C -d master -Q 'SELECT 1' || exit 1",
+                ]
+            interval: 5s
+            timeout: 5s
+            retries: 20
+            start_period: 10s
+
+volumes:
+    sqlserver-data:

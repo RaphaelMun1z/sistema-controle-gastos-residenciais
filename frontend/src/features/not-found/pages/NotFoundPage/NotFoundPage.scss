@@ -1,0 +1,13 @@
+@use "../../../../styles/breakpoints" as *;
+
+.main-container {
+	width: 100%;
+	min-height: 100%;
+	background-color: whitesmoke;
+}
+
+@include down($breakpoint-sm) {
+	.main-container {
+		padding: 0;
+	}
+}

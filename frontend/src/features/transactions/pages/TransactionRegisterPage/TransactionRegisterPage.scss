@@ -1,0 +1,232 @@
+@use "../../../../styles/breakpoints" as *;
+
+.transaction-register-page {
+	width: 100%;
+	min-width: 0;
+	min-height: 100%;
+	display: flex;
+	flex-direction: column;
+}
+
+.transaction-register-page__form-container {
+	width: 100%;
+	margin-top: 40px;
+}
+
+.transaction-form {
+	width: 100%;
+	max-width: 960px;
+
+	// Sem fundo, borda ou card
+	background: transparent;
+}
+
+.transaction-form__grid {
+	display: grid;
+	grid-template-columns: repeat(12, minmax(0, 1fr));
+	gap: 22px 20px;
+	align-items: start;
+}
+
+.transaction-form__field {
+	grid-column: span 6;
+}
+
+.transaction-form__field--person,
+.transaction-form__field--type,
+.transaction-form__field--description {
+	grid-column: 1 / -1;
+}
+
+.transaction-form__field--amount,
+.transaction-form__field--date {
+	grid-column: span 6;
+}
+
+.person-autocomplete {
+	.MuiOutlinedInput-root {
+		background-color: #ffffff;
+	}
+
+	.MuiInputAdornment-root {
+		margin-right: 6px;
+		color: #64748b;
+	}
+}
+
+.person-autocomplete__input-avatar {
+	width: 28px;
+	height: 28px;
+	font-size: 0.85rem;
+	font-weight: 700;
+	background-color: #2f6f5e;
+}
+
+.person-autocomplete__option {
+	display: flex;
+	align-items: center;
+	gap: 12px;
+	min-height: 64px;
+	padding-block: 10px;
+
+	&.Mui-focused,
+	&[aria-selected="true"] {
+		background-color: #eef6f2;
+	}
+}
+
+.person-autocomplete__avatar {
+	width: 38px;
+	height: 38px;
+	flex: 0 0 auto;
+	font-size: 0.95rem;
+	font-weight: 700;
+	background-color: #2f6f5e;
+}
+
+.person-autocomplete__option-content {
+	display: flex;
+	min-width: 0;
+	flex-direction: column;
+	gap: 2px;
+
+	strong,
+	small {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	strong {
+		color: #111827;
+		font-size: 0.95rem;
+		font-weight: 700;
+	}
+
+	small {
+		color: #64748b;
+		font-size: 0.8rem;
+	}
+}
+
+.transaction-type-control {
+	gap: 8px;
+}
+
+.transaction-type-control__label {
+	color: #374151;
+	font-size: 0.85rem;
+	font-weight: 600;
+}
+
+.transaction-type-options {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 12px;
+}
+
+.transaction-type-option {
+	display: flex;
+	align-items: center;
+	min-width: 0;
+	min-height: 56px;
+	gap: 10px;
+	padding: 8px 12px;
+	border: 1px solid #d1d5db;
+	border-radius: 8px;
+	background-color: #ffffff;
+	color: #374151;
+	cursor: pointer;
+	transition:
+		border-color 0.2s ease,
+		background-color 0.2s ease,
+		color 0.2s ease;
+
+	.MuiRadio-root {
+		padding: 0;
+		color: #94a3b8;
+	}
+
+	&:hover {
+		border-color: #94a3b8;
+		background-color: #f8fafc;
+	}
+
+	&.is-selected {
+		border-color: #2f6f5e;
+		background-color: #eef6f2;
+		color: #1f4f42;
+
+		.MuiRadio-root,
+		.transaction-type-option__icon {
+			color: #2f6f5e;
+		}
+	}
+
+	&.is-disabled {
+		cursor: not-allowed;
+		opacity: 0.56;
+	}
+}
+
+.transaction-type-option__icon {
+	display: inline-flex;
+	color: #64748b;
+
+	svg {
+		font-size: 1.35rem;
+	}
+}
+
+.transaction-form__observation {
+	margin-top: 20px;
+}
+
+.transaction-form__actions {
+	margin-top: 32px;
+
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+
+	gap: 12px;
+
+	button {
+		text-transform: none;
+		font-weight: 500;
+		border-radius: 8px;
+	}
+}
+
+@include down($breakpoint-md) {
+	.transaction-form__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.transaction-form__field,
+	.transaction-form__field--person,
+	.transaction-form__field--type,
+	.transaction-form__field--description,
+	.transaction-form__field--amount,
+	.transaction-form__field--date {
+		grid-column: 1 / -1;
+	}
+
+	.transaction-type-options {
+		grid-template-columns: 1fr;
+	}
+
+	.transaction-form__actions {
+		flex-direction: column-reverse;
+
+		button {
+			width: 100%;
+		}
+	}
+}
+
+@include down($breakpoint-sm) {
+	.transaction-register-page__form-container {
+		margin-top: 28px;
+	}
+}

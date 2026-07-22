@@ -1,0 +1,9 @@
+CREATE TABLE dbo.tb_people (
+    Id UNIQUEIDENTIFIER NOT NULL,
+    Name NVARCHAR(150) NOT NULL,
+    BirthDate DATE NOT NULL,
+
+    CONSTRAINT PK_People
+        PRIMARY KEY (Id)
+);
+GO

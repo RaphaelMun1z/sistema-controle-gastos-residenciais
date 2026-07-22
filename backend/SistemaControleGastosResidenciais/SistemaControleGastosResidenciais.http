@@ -1,0 +1,6 @@
+@SistemaControleGastosResidenciais_HostAddress = http://localhost:5039
+
+GET {{SistemaControleGastosResidenciais_HostAddress}}/swagger-ui/index.html
+Accept: text/html
+
+###

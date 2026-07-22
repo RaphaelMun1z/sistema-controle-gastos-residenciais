@@ -1,0 +1,67 @@
+@use "../../../../styles/breakpoints" as *;
+
+.people-consult-page {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	min-width: 0;
+	min-height: 100%;
+
+	&__create {
+		display: flex;
+		align-items: center;
+		gap: 16px;
+		margin-top: 40px;
+	}
+
+	&__table {
+		width: 100%;
+		min-width: 0;
+		margin-top: 2rem;
+		position: relative;
+		transition: opacity 0.2s ease;
+	}
+
+	&__table.is-fetching {
+		opacity: 0.72;
+	}
+
+	&__total {
+		display: inline-flex;
+		margin-bottom: 0.75rem;
+		color: #4b5563;
+		font-size: 0.95rem;
+	}
+
+	&__pagination {
+		display: flex;
+		justify-content: center;
+		margin-top: 1.5rem;
+	}
+}
+
+.table-column-header,
+.table-cell-detail {
+	display: inline-flex;
+	align-items: center;
+	gap: 8px;
+	min-width: 0;
+}
+
+.table-column-header svg,
+.table-cell-detail svg {
+	flex-shrink: 0;
+	color: #6b7280;
+}
+
+@include down($breakpoint-sm) {
+	.people-consult-page__create {
+		align-items: stretch;
+		flex-direction: column;
+		margin-top: 28px;
+
+		a {
+			width: 100%;
+		}
+	}
+}

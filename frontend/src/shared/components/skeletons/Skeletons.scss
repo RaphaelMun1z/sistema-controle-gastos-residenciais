@@ -1,0 +1,59 @@
+@use "../../../styles/breakpoints" as *;
+
+.table-skeleton {
+	width: 100%;
+	max-width: 100%;
+	overflow-x: auto;
+}
+
+.table-skeleton__surface {
+	min-width: 640px;
+	background-color: #f5f5f5 !important;
+}
+
+.table-skeleton__row {
+	display: grid;
+	align-items: center;
+	gap: 24px;
+	padding: 14px 16px;
+
+	&:nth-child(odd) {
+		background-color: #f1f1f1;
+	}
+}
+
+.table-skeleton__row--header {
+	background-color: #f5f5f5;
+}
+
+.page-skeleton,
+.form-skeleton {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.page-skeleton__content,
+.form-skeleton__grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: 20px;
+}
+
+.form-skeleton__actions {
+	display: flex;
+	justify-content: flex-end;
+	gap: 12px;
+}
+
+@include down($breakpoint-sm) {
+	.page-skeleton__content,
+	.form-skeleton__grid {
+		grid-template-columns: 1fr;
+	}
+
+	.form-skeleton__actions {
+		flex-direction: column;
+	}
+}

@@ -1,0 +1,19 @@
+@use "../../../styles/breakpoints" as *;
+
+.page-title {
+	margin-top: 10px;
+	font-size: clamp(1.75rem, 4vw, 3rem);
+	font-weight: 600;
+	line-height: 1.1;
+	overflow-wrap: anywhere;
+}
+
+header {
+	min-width: 0;
+}
+
+@include down($breakpoint-sm) {
+	.MuiBreadcrumbs-ol {
+		row-gap: 4px;
+	}
+}

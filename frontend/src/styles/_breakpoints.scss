@@ -1,0 +1,9 @@
+$breakpoint-sm: 600px;
+$breakpoint-md: 900px;
+$breakpoint-lg: 1200px;
+
+@mixin down($breakpoint) {
+	@media (max-width: $breakpoint) {
+		@content;
+	}
+}
