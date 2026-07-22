@@ -75,6 +75,15 @@ Entre as principais regras de negócio estão:
 </table>
 </div>
 
+## Documentação
+
+Os arquivos de documentação, imagens e materiais de apoio ficam nos diretórios `docs` de cada projeto:
+
+- Frontend: [`frontend/docs`](./frontend/docs)
+- Backend: [`backend/docs`](./backend/docs)
+
+No frontend, esse diretório reúne os previews da interface e a documentação completa do projeto. No backend, ficam os diagramas, requisitos, previews da documentação da API, scripts de apoio e a collection do Postman versionada.
+
 ## Como Executar Com Docker Compose
 
 Pré-requisitos:
@@ -129,9 +138,11 @@ docker compose down -v
 ```text
 .
 ├── frontend/
-│   └── Aplicação React
+│   ├── Aplicação React
+│   └── docs/
 ├── backend/
-│   └── API ASP.NET Core e Docker Compose original do backend
+│   ├── API ASP.NET Core e Docker Compose original do backend
+│   └── docs/
 ├── docker-compose.yml
 └── README.md
 ```
