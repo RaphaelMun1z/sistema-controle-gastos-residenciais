@@ -24,6 +24,15 @@ Este diretório reúne os dois projetos para facilitar a execução local com Do
 - Frontend: [RaphaelMun1z/react-sistema-controle-gastos-residenciais](https://github.com/RaphaelMun1z/react-sistema-controle-gastos-residenciais)
 - Backend: [RaphaelMun1z/csharp-dotnet-sistema-controle-gastos-residenciais](https://github.com/RaphaelMun1z/csharp-dotnet-sistema-controle-gastos-residenciais)
 
+## Sumário
+
+- [Visão Geral](#visão-geral)
+- [Imagens](#imagens)
+- [Documentação](#documentação)
+- [Como Executar Com Docker Compose](#como-executar-com-docker-compose)
+- [Como Executar Sem Docker](#como-executar-sem-docker)
+- [Estrutura](#estrutura)
+
 ## Visão Geral
 
 O frontend é uma aplicação React com TypeScript, Vite, Material UI, React Router, TanStack Query, React Hook Form e Zod. Ele consome uma API versionada em `/api/v1`, usa autenticação JWT e organiza as telas por domínio.
@@ -131,6 +140,84 @@ Para encerrar removendo também o volume do banco:
 
 ```bash
 docker compose down -v
+```
+
+## Como Executar Sem Docker
+
+Pré-requisitos:
+
+```text
+.NET 10 SDK
+Node.js
+npm
+SQL Server local
+```
+
+Antes de iniciar a API, confira se o SQL Server está disponível em `localhost:1433`. A configuração padrão do backend usa:
+
+```text
+Database: db_household_expense_tracking_development
+User Id: sa
+Password: Database2026@
+```
+
+Se necessário, ajuste a connection string em `backend/SistemaControleGastosResidenciais/appsettings.json` ou sobrescreva por variável de ambiente.
+
+### Backend
+
+Em um terminal, execute:
+
+```bash
+cd backend/SistemaControleGastosResidenciais
+dotnet restore
+```
+
+Defina a chave JWT para o ambiente local:
+
+```powershell
+$env:Jwt__SecretKey="SistemaControleGastosResidenciais-JWT-SecretKey-2026-Segura"
+```
+
+Inicie a API usando o perfil HTTPS:
+
+```bash
+dotnet run --launch-profile https
+```
+
+Endereços principais:
+
+| Recurso | Endereço |
+| :-- | :-- |
+| API | `https://localhost:7201/api/v1` |
+| Swagger UI | `https://localhost:7201/swagger-ui/index.html` |
+| Scalar | `https://localhost:7201/scalar` |
+
+### Frontend
+
+Em outro terminal, execute:
+
+```bash
+cd frontend
+npm install
+```
+
+Crie ou ajuste o arquivo `.env`:
+
+```env
+VITE_API_URL=https://localhost:7201/api/v1
+VITE_BYPASS_AUTH=false
+```
+
+Inicie a interface:
+
+```bash
+npm run dev -- --host 0.0.0.0 --port 5173
+```
+
+A aplicação ficará disponível em:
+
+```text
+http://localhost:5173
 ```
 
 ## Estrutura
